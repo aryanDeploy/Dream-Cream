@@ -26,9 +26,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
-
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--cream);
@@ -36,7 +34,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--cream-dark); }
 ::-webkit-scrollbar-thumb { background: var(--rose-dark); border-radius: 3px; }
@@ -111,8 +108,6 @@ nav.scrolled {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg, rgba(92,51,23,0.55) 0%, rgba(244,167,185,0.2) 100%);
 }
-
-/* Slide images via Unsplash */
 .s1 { background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80'); }
 .s2 { background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1600&q=80'); }
 .s3 { background-image: url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=1600&q=80'); }
@@ -237,12 +232,13 @@ section { padding: 90px 5%; }
   aspect-ratio: 1/1; background: var(--cream-dark);
   box-shadow: var(--shadow);
 }
-/*.about-img:first-child { grid-row: 1 / 3; }*/
 .about-img img {
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 0.6s ease;
 }
 .about-img:hover img { transform: scale(1.06); }
+
+/* Trophy badge — hidden on mobile, shown on desktop */
 .about-badge {
   position: absolute; bottom: 20px; right: -20px;
   background: var(--rose-dark); color: #fff; border-radius: 16px;
@@ -250,6 +246,7 @@ section { padding: 90px 5%; }
 }
 .about-badge .num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; line-height: 1; }
 .about-badge .lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
+
 .about-text .section-header { text-align: left; margin-bottom: 30px; }
 .about-text .divider { justify-content: flex-start; }
 .about-text p { font-size: 1rem; line-height: 1.8; color: var(--text-mid); margin-bottom: 16px; }
@@ -309,11 +306,15 @@ section { padding: 90px 5%; }
 .gallery .section-tag { color: var(--rose); }
 .gallery .section-desc { color: rgba(253,246,239,0.7); }
 .gallery .divider::before, .gallery .divider::after { background: var(--rose); }
+
+/* Desktop gallery grid */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 220px);
-  gap: 12px; max-width: 1200px; margin: 0 auto;
+  grid-auto-rows: 220px;
+  gap: 12px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .gal-item {
   border-radius: 16px; overflow: hidden;
@@ -321,37 +322,6 @@ section { padding: 90px 5%; }
 }
 .gal-item:nth-child(1) { grid-column: 1/3; grid-row: 1/3; }
 .gal-item:nth-child(5) { grid-column: 3/5; grid-row: 2/4; }
-/* ===== FIX: LAST ROW CENTER IMAGE BIG ===== */
-.gal-item:nth-child(7) {
-  grid-column: 1 / 2;
-}
-
-.gal-item:nth-child(8) {
-  grid-column: 2 / 4; /* center wali image wide */
-}
-
-.gal-item:nth-child(9) {
-  grid-column: 4 / 5;
-}
-
-/* OPTIONAL: center image thodi highlight lage */
-.gal-item:nth-child(8) img {
-  transform: scale(1.05);
-}
-/* LAST ROW HEIGHT FIX */
-.gal-item:nth-child(7),
-.gal-item:nth-child(8),
-.gal-item:nth-child(9) {
-  height: 230px; /* height kam kar di */
-}
-
-/* image properly fit ho */
-.gal-item:nth-child(7) img,
-.gal-item:nth-child(8) img,
-.gal-item:nth-child(9) img {
-  height: 100%;
-  object-fit: cover;
-}
 .gal-item img {
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 0.6s ease, filter 0.4s ease;
@@ -567,22 +537,37 @@ footer {
 .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal-right.visible { opacity: 1; transform: none; }
 
-/* ===== RESPONSIVE ===== */
+/* ===================================================
+   RESPONSIVE — TABLET (≤1024px)
+=================================================== */
 @media(max-width: 1024px) {
   .about-inner { grid-template-columns: 1fr; gap: 40px; }
   .about-images { max-width: 520px; margin: 0 auto; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 200px); }
-  .gal-item:nth-child(1) { grid-column: 1/3; }
-  .gal-item:nth-child(5) { grid-column: 2/4; }
+
+  /* Gallery 3-col on tablet */
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 200px;
+  }
+  .gal-item:nth-child(1) { grid-column: 1/3; grid-row: 1/3; }
+  .gal-item:nth-child(5) { grid-column: 2/4; grid-row: auto; }
 }
+
+/* ===================================================
+   RESPONSIVE — MOBILE (≤768px)
+=================================================== */
+/* Hide first gallery image on mobile */
+@media(max-width: 768px) {
+  .gallery-grid .gal-item:nth-child(1) {
+    display: none;
+  }
+}
+.gal-item:nth-child(2) { display: none; } /* 2nd image hide */
 @media(max-width: 768px) {
   .nav-links { display: none; }
   .hamburger { display: block; }
   .contact-inner { grid-template-columns: 1fr; }
-  .gallery-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: repeat(5,180px); }
-  .gal-item:nth-child(1) { grid-column: 1/3; }
-  .gal-item:nth-child(5) { grid-column: 1/3; }
   .hero h1 { font-size: 2.2rem; }
   .review-card { padding: 30px 20px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -590,14 +575,60 @@ footer {
   .hours-card { padding: 30px 22px; }
   .float-btn span { display: none; }
   .float-btn { padding: 14px; border-radius: 50%; }
+
+  /* ── ABOUT: hide trophy badge on mobile ── */
+  .about-badge { display: none; }
+
+  /* About images: 2-col equal grid, no overflow */
+  .about-images {
+    max-width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .about-img {
+    aspect-ratio: 1/1;
+    border-radius: 14px;
+  }
+
+  /* ── GALLERY: clean 2-col grid on mobile ── */
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 160px;
+    gap: 8px;
+  }
+  /* Reset all desktop span overrides */
+  .gal-item { grid-column: auto !important; grid-row: auto !important; height: auto !important; }
+  /* First item spans full width for a hero feel */
+  .gal-item:nth-child(1) { grid-column: 1 / -1 !important; height: 200px !important; }
+
+  /* Reset any nth-child image-specific transforms */
+  .gal-item img { transform: none !important; height: 100% !important; }
 }
+
+/* ===================================================
+   RESPONSIVE — SMALL MOBILE (≤480px)
+=================================================== */
 @media(max-width: 480px) {
   section { padding: 70px 5%; }
   .stats-strip { gap: 28px; padding: 30px 5%; }
-  .about-badge { right: 0; }
-  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(6, 150px); }
-  .gal-item:nth-child(1) { grid-column: 1/3; grid-row: 1/2; }
-  .gal-item:nth-child(5) { grid-column: 1/3; grid-row: auto; }
+
+  /* About images stay 2-col */
+  .about-images {
+    max-width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .about-img { border-radius: 12px; }
+  .about-badge { display: none; }
+
+  /* Gallery 2-col, all equal */
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 140px;
+    gap: 8px;
+  }
+  .gal-item { grid-column: auto !important; grid-row: auto !important; height: auto !important; }
+  .gal-item:nth-child(1) { grid-column: 1 / -1 !important; height: 180px !important; }
 }
 </style>
 </head>
@@ -676,7 +707,7 @@ footer {
       <div class="about-img">
         <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80" alt="Pastries" loading="lazy">
       </div>
-
+      <!-- Trophy badge: visible on desktop, hidden on mobile via CSS -->
       <div class="about-badge">
         <div class="num">🏆</div>
         <div class="lbl">Best Cake Shop<br>Bhopal</div>
@@ -816,12 +847,12 @@ footer {
       <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" alt="Tarts" loading="lazy">
       <div class="overlay"><div class="overlay-text">Fruit Tarts</div></div>
     </div>
-     <div class="gal-item">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwkNflLSY-sZvayaxDdew9p3687GrNG-TBMw&s" alt="Tarts" width="400" height="500" loading="lazy">
-      <div class="overlay"><div class="overlay-text">Fruit cakr</div></div>
+    <div class="gal-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwkNflLSY-sZvayaxDdew9p3687GrNG-TBMw&s" alt="Fruit Cake" loading="lazy">
+      <div class="overlay"><div class="overlay-text">Fruit Cake</div></div>
     </div>
-     <div class="gal-item">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT16a0XpUTcmdW7jcPMD4_snvao2DHjWn5RPA&s" alt="Tarts" loading="lazy">
+    <div class="gal-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT16a0XpUTcmdW7jcPMD4_snvao2DHjWn5RPA&s" alt="Gems" loading="lazy">
       <div class="overlay"><div class="overlay-text">Gems</div></div>
     </div>
   </div>
@@ -918,7 +949,7 @@ footer {
   <div class="section-header reveal">
     <div class="section-tag">Find Us</div>
     <h2 class="section-title" style="color:var(--cream)">Opening <span style="color:var(--rose)">Hours</span></h2>
-    <div class="divider" style="--rose:var(--rose)"><i class="fas fa-clock" style="color:var(--rose)"></i></div>
+    <div class="divider"><i class="fas fa-clock" style="color:var(--rose)"></i></div>
   </div>
   <div class="hours-card reveal">
     <div class="hours-row">
@@ -1065,7 +1096,6 @@ function goSlide(n) {
   slides[currentSlide].classList.add('active');
   dots[currentSlide].classList.add('active');
 }
-
 setInterval(() => goSlide((currentSlide + 1) % slides.length), 5000);
 
 // ===== REVIEW CAROUSEL =====
