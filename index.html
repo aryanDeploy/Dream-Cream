@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Cream – Cakes, Desserts & Quick Bites | Bhopal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root {
+  --rose: #f4a7b9;
+  --rose-dark: #e87fa0;
+  --cream: #fdf6ef;
+  --cream-dark: #f5e6d3;
+  --choco: #5c3317;
+  --choco-mid: #8b4513;
+  --choco-light: #c47a3a;
+  --gold: #d4a853;
+  --blush: #fce4ec;
+  --mint: #e8f5e9;
+  --text: #2d1a0e;
+  --text-mid: #6b3f2a;
+  --white: #ffffff;
+  --shadow: 0 20px 60px rgba(92,51,23,0.12);
+  --shadow-sm: 0 4px 20px rgba(92,51,23,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream-dark); }
+::-webkit-scrollbar-thumb { background: var(--rose-dark); border-radius: 3px; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%;
+  height: 70px;
+  background: rgba(253,246,239,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(244,167,185,0.25);
+  transition: all 0.3s ease;
+}
+nav.scrolled {
+  box-shadow: 0 4px 30px rgba(92,51,23,0.12);
+  height: 62px;
+}
+.nav-logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;
+  color: var(--choco);
+  text-decoration: none;
+  line-height: 1;
+}
+.nav-logo span { color: var(--rose-dark); }
+.nav-links { display: flex; gap: 32px; list-style: none; }
+.nav-links a {
+  font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em;
+  color: var(--text-mid); text-decoration: none; text-transform: uppercase;
+  position: relative; padding-bottom: 2px;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: 0; left: 0;
+  width: 0; height: 2px; background: var(--rose-dark);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+.nav-cta {
+  background: var(--choco); color: var(--white) !important;
+  padding: 9px 22px !important; border-radius: 50px;
+  transition: background 0.3s, transform 0.2s !important;
+}
+.nav-cta:hover { background: var(--rose-dark) !important; transform: translateY(-1px); }
+.nav-cta::after { display: none !important; }
+.hamburger { display: none; font-size: 1.4rem; color: var(--choco); cursor: pointer; }
+.mobile-menu {
+  display: none; position: fixed; top: 70px; left: 0; right: 0;
+  background: var(--cream); padding: 20px 5%; box-shadow: var(--shadow-sm);
+  z-index: 999;
+}
+.mobile-menu a {
+  display: block; padding: 12px 0; font-weight: 500; color: var(--text);
+  text-decoration: none; border-bottom: 1px solid var(--cream-dark);
+  font-size: 0.95rem;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative; height: 100vh; min-height: 600px;
+  overflow: hidden; display: flex; align-items: center; justify-content: center;
+}
+.hero-slides { position: absolute; inset: 0; }
+.hero-slide {
+  position: absolute; inset: 0; opacity: 0;
+  transition: opacity 1.2s ease;
+  background-size: cover; background-position: center;
+}
+.hero-slide.active { opacity: 1; }
+.hero-slide::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(92,51,23,0.55) 0%, rgba(244,167,185,0.2) 100%);
+}
+
+/* Slide images via Unsplash */
+.s1 { background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80'); }
+.s2 { background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1600&q=80'); }
+.s3 { background-image: url('https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=1600&q=80'); }
+.s4 { background-image: url('https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=1600&q=80'); }
+
+.hero-content {
+  position: relative; z-index: 2; text-align: center;
+  padding: 0 20px; animation: heroFadeUp 1.2s ease 0.3s both;
+}
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero-tag {
+  display: inline-block; background: rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.4); color: #fff;
+  font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 6px 18px; border-radius: 50px; margin-bottom: 22px;
+  backdrop-filter: blur(8px);
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 900; color: #fff; line-height: 1.1;
+  margin-bottom: 18px; text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.hero h1 em { font-style: italic; color: var(--rose); }
+.hero p {
+  font-size: clamp(1rem, 2.5vw, 1.25rem); color: rgba(255,255,255,0.9);
+  margin-bottom: 38px; font-weight: 300; letter-spacing: 0.02em;
+}
+.hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--rose-dark); color: #fff;
+  padding: 14px 32px; border-radius: 50px; font-weight: 500;
+  text-decoration: none; font-size: 0.95rem; letter-spacing: 0.03em;
+  transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 8px 30px rgba(232,127,160,0.4);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(232,127,160,0.5); background: #d4698a; }
+.btn-secondary {
+  background: rgba(255,255,255,0.15); color: #fff;
+  border: 2px solid rgba(255,255,255,0.6);
+  padding: 14px 32px; border-radius: 50px; font-weight: 500;
+  text-decoration: none; font-size: 0.95rem; letter-spacing: 0.03em;
+  transition: all 0.3s; display: inline-flex; align-items: center; gap: 8px;
+  backdrop-filter: blur(8px);
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.3); transform: translateY(-3px); }
+.hero-dots {
+  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 10px; z-index: 3;
+}
+.hero-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.3s;
+}
+.hero-dot.active { background: #fff; width: 24px; border-radius: 4px; }
+.hero-scroll {
+  position: absolute; bottom: 30px; right: 5%;
+  color: rgba(255,255,255,0.7); font-size: 0.75rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 3;
+}
+.hero-scroll::after {
+  content: ''; width: 1px; height: 50px;
+  background: rgba(255,255,255,0.5); animation: scrollLine 2s ease infinite;
+}
+@keyframes scrollLine { 0%,100%{opacity:0.3;transform:scaleY(0.5)} 50%{opacity:1;transform:scaleY(1)} }
+
+/* ===== SECTION BASE ===== */
+section { padding: 90px 5%; }
+.section-header { text-align: center; margin-bottom: 60px; }
+.section-tag {
+  display: inline-block; font-family: 'Great Vibes', cursive;
+  font-size: 1.5rem; color: var(--rose-dark); margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 700;
+  color: var(--choco); line-height: 1.2;
+}
+.section-title span { color: var(--rose-dark); }
+.section-desc {
+  font-size: 1rem; color: var(--text-mid); margin-top: 14px;
+  max-width: 560px; margin-left: auto; margin-right: auto; line-height: 1.7;
+}
+.divider {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin: 16px 0 0;
+}
+.divider::before, .divider::after {
+  content: ''; flex: 1; max-width: 60px;
+  height: 1px; background: var(--rose);
+}
+.divider i { color: var(--rose-dark); font-size: 0.8rem; }
+
+/* ===== STATS STRIP ===== */
+.stats-strip {
+  background: var(--choco); padding: 36px 5%;
+  display: flex; justify-content: space-around; flex-wrap: wrap; gap: 24px;
+}
+.stat { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 900; color: var(--rose);
+}
+.stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.7); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+
+/* ===== ABOUT ===== */
+.about { background: var(--white); }
+.about-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;
+  max-width: 1200px; margin: 0 auto;
+}
+.about-images {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  position: relative;
+}
+.about-img {
+  border-radius: 20px; overflow: hidden;
+  aspect-ratio: 1/1; background: var(--cream-dark);
+  box-shadow: var(--shadow);
+}
+/*.about-img:first-child { grid-row: 1 / 3; }*/
+.about-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.about-img:hover img { transform: scale(1.06); }
+.about-badge {
+  position: absolute; bottom: 20px; right: -20px;
+  background: var(--rose-dark); color: #fff; border-radius: 16px;
+  padding: 16px 20px; text-align: center; box-shadow: var(--shadow);
+}
+.about-badge .num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; line-height: 1; }
+.about-badge .lbl { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.85; }
+.about-text .section-header { text-align: left; margin-bottom: 30px; }
+.about-text .divider { justify-content: flex-start; }
+.about-text p { font-size: 1rem; line-height: 1.8; color: var(--text-mid); margin-bottom: 16px; }
+.about-perks { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0; }
+.perk {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--blush); border-radius: 50px;
+  padding: 8px 16px; font-size: 0.85rem; color: var(--choco); font-weight: 500;
+}
+.perk i { color: var(--rose-dark); }
+
+/* ===== MENU ===== */
+.menu { background: var(--cream); }
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px; max-width: 1200px; margin: 0 auto;
+}
+.menu-card {
+  background: var(--white); border-radius: 24px;
+  overflow: hidden; box-shadow: var(--shadow-sm);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+.menu-card:hover { transform: translateY(-10px); box-shadow: var(--shadow); }
+.menu-card-img {
+  height: 220px; overflow: hidden; position: relative;
+}
+.menu-card-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.menu-card:hover .menu-card-img img { transform: scale(1.1); }
+.menu-card-img .card-tag {
+  position: absolute; top: 14px; left: 14px;
+  background: var(--rose-dark); color: #fff;
+  font-size: 0.7rem; padding: 4px 12px; border-radius: 50px;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.menu-card-body { padding: 22px 22px 26px; }
+.menu-card-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem; color: var(--choco); margin-bottom: 8px;
+}
+.menu-card-body p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.6; }
+.menu-card-body .arrow {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--rose-dark); font-size: 0.82rem; font-weight: 500;
+  margin-top: 14px; text-decoration: none;
+  transition: gap 0.3s;
+}
+.menu-card:hover .arrow { gap: 10px; }
+
+/* ===== GALLERY ===== */
+.gallery { background: var(--choco); }
+.gallery .section-title { color: var(--cream); }
+.gallery .section-tag { color: var(--rose); }
+.gallery .section-desc { color: rgba(253,246,239,0.7); }
+.gallery .divider::before, .gallery .divider::after { background: var(--rose); }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 220px);
+  gap: 12px; max-width: 1200px; margin: 0 auto;
+}
+.gal-item {
+  border-radius: 16px; overflow: hidden;
+  position: relative; cursor: pointer;
+}
+.gal-item:nth-child(1) { grid-column: 1/3; grid-row: 1/3; }
+.gal-item:nth-child(5) { grid-column: 3/5; grid-row: 2/4; }
+/* ===== FIX: LAST ROW CENTER IMAGE BIG ===== */
+.gal-item:nth-child(7) {
+  grid-column: 1 / 2;
+}
+
+.gal-item:nth-child(8) {
+  grid-column: 2 / 4; /* center wali image wide */
+}
+
+.gal-item:nth-child(9) {
+  grid-column: 4 / 5;
+}
+
+/* OPTIONAL: center image thodi highlight lage */
+.gal-item:nth-child(8) img {
+  transform: scale(1.05);
+}
+/* LAST ROW HEIGHT FIX */
+.gal-item:nth-child(7),
+.gal-item:nth-child(8),
+.gal-item:nth-child(9) {
+  height: 220px; /* height kam kar di */
+}
+
+/* image properly fit ho */
+.gal-item:nth-child(7) img,
+.gal-item:nth-child(8) img,
+.gal-item:nth-child(9) img {
+  height: 100%;
+  object-fit: cover;
+}
+.gal-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.6s ease, filter 0.4s ease;
+}
+.gal-item:hover img { transform: scale(1.08); filter: brightness(1.05); }
+.gal-item .overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(92,51,23,0.7) 0%, transparent 50%);
+  opacity: 0; transition: opacity 0.4s;
+  display: flex; align-items: flex-end; padding: 18px;
+}
+.gal-item:hover .overlay { opacity: 1; }
+.overlay-text { color: #fff; font-size: 0.88rem; font-weight: 500; }
+
+/* ===== REVIEWS ===== */
+.reviews { background: var(--blush); }
+.reviews-carousel { max-width: 900px; margin: 0 auto; position: relative; }
+.review-slides { overflow: hidden; }
+.review-track { display: flex; transition: transform 0.6s cubic-bezier(0.25,0.8,0.25,1); }
+.review-card {
+  min-width: 100%; padding: 50px 60px; text-align: center;
+}
+.stars { color: var(--gold); font-size: 1.2rem; margin-bottom: 22px; }
+.review-text {
+  font-family: 'Playfair Display', serif; font-size: 1.25rem;
+  font-style: italic; color: var(--choco); line-height: 1.7;
+  margin-bottom: 28px;
+}
+.reviewer { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.reviewer-avatar {
+  width: 50px; height: 50px; border-radius: 50%;
+  object-fit: cover; border: 3px solid var(--rose);
+}
+.reviewer-info h4 { font-weight: 600; color: var(--choco); font-size: 0.95rem; }
+.reviewer-info span { font-size: 0.8rem; color: var(--text-mid); }
+.carousel-nav {
+  display: flex; justify-content: center; align-items: center;
+  gap: 16px; margin-top: 30px;
+}
+.carousel-btn {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 2px solid var(--rose-dark); background: transparent;
+  color: var(--rose-dark); cursor: pointer; font-size: 0.9rem;
+  transition: all 0.3s; display: flex; align-items: center; justify-content: center;
+}
+.carousel-btn:hover { background: var(--rose-dark); color: #fff; }
+.carousel-dots { display: flex; gap: 8px; }
+.c-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--rose); opacity: 0.4; cursor: pointer; transition: all 0.3s;
+}
+.c-dot.active { opacity: 1; background: var(--rose-dark); width: 20px; border-radius: 4px; }
+
+/* ===== ATMOSPHERE ===== */
+.atm { background: var(--white); }
+.atm-grid {
+  display: flex; flex-wrap: wrap; gap: 20px;
+  justify-content: center; max-width: 900px; margin: 0 auto;
+}
+.atm-badge {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--cream); border: 2px solid var(--cream-dark);
+  border-radius: 16px; padding: 16px 24px;
+  transition: all 0.3s; cursor: default;
+}
+.atm-badge:hover {
+  border-color: var(--rose); transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(244,167,185,0.25);
+}
+.atm-badge i { font-size: 1.5rem; color: var(--rose-dark); }
+.atm-badge span { font-weight: 500; color: var(--choco); font-size: 0.9rem; }
+
+/* ===== HOURS ===== */
+.hours { background: linear-gradient(135deg, var(--choco) 0%, #3d1e08 100%); }
+.hours .section-title { color: var(--cream); }
+.hours .section-tag { color: var(--rose); }
+.hours .divider::before, .hours .divider::after { background: var(--rose); }
+.hours-card {
+  max-width: 560px; margin: 0 auto;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 28px; padding: 50px;
+  backdrop-filter: blur(10px);
+}
+.hours-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.hours-row:last-child { border-bottom: none; }
+.hours-days { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+.hours-time { color: var(--rose); font-weight: 600; font-size: 0.95rem; }
+.open-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(72,199,102,0.15); border: 1px solid rgba(72,199,102,0.4);
+  color: #6fcf97; border-radius: 50px; padding: 8px 20px;
+  font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;
+  margin-top: 28px; font-weight: 500;
+}
+.open-dot { width: 8px; height: 8px; border-radius: 50%; background: #6fcf97; animation: pulse 2s ease infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+.hours-footer { text-align: center; margin-top: 28px; color: rgba(255,255,255,0.5); font-size: 0.82rem; }
+
+/* ===== CONTACT ===== */
+.contact { background: var(--cream); }
+.contact-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1200px; margin: 0 auto;
+}
+.contact-info h3 {
+  font-family: 'Playfair Display', serif; font-size: 1.6rem;
+  color: var(--choco); margin-bottom: 26px;
+}
+.contact-detail {
+  display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px;
+}
+.contact-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  background: var(--blush); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contact-icon i { color: var(--rose-dark); font-size: 1.1rem; }
+.contact-detail-text a { color: var(--choco); text-decoration: none; font-weight: 500; }
+.contact-detail-text a:hover { color: var(--rose-dark); }
+.contact-detail-text p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.5; }
+.map-wrap { border-radius: 20px; overflow: hidden; margin-top: 24px; box-shadow: var(--shadow-sm); }
+.wa-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #25D366; color: #fff; padding: 13px 28px;
+  border-radius: 50px; text-decoration: none; font-weight: 500;
+  font-size: 0.9rem; margin-top: 20px; transition: all 0.3s;
+  box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+}
+.wa-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(37,211,102,0.4); background: #1ebd5a; }
+.contact-form { background: var(--white); border-radius: 28px; padding: 44px; box-shadow: var(--shadow-sm); }
+.contact-form h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--choco); margin-bottom: 28px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 0.82rem; font-weight: 500; color: var(--text-mid); margin-bottom: 6px; letter-spacing: 0.04em; text-transform: uppercase; }
+.form-group input, .form-group textarea {
+  width: 100%; padding: 13px 16px; border-radius: 12px;
+  border: 2px solid var(--cream-dark); background: var(--cream);
+  font-family: 'DM Sans', sans-serif; font-size: 0.95rem; color: var(--text);
+  transition: border-color 0.3s; outline: none;
+  resize: vertical;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--rose-dark); }
+.form-group textarea { height: 120px; }
+.form-submit {
+  width: 100%; padding: 14px; border-radius: 50px;
+  background: var(--choco); color: #fff; border: none;
+  font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+  cursor: pointer; transition: all 0.3s; letter-spacing: 0.04em;
+}
+.form-submit:hover { background: var(--rose-dark); transform: translateY(-2px); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #1a0a02; padding: 70px 5% 30px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 50px; margin-bottom: 50px;
+}
+.footer-brand .logo {
+  font-family: 'Great Vibes', cursive; font-size: 2.4rem;
+  color: var(--rose); display: block; margin-bottom: 14px;
+}
+.footer-brand p { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.7; }
+.footer-col h4 {
+  font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); margin-bottom: 18px; font-weight: 500;
+}
+.footer-col a { display: block; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; margin-bottom: 10px; transition: color 0.3s; }
+.footer-col a:hover { color: var(--rose); }
+.footer-col p { color: rgba(255,255,255,0.6); font-size: 0.88rem; line-height: 1.7; }
+.social-icons { display: flex; gap: 12px; margin-top: 16px; }
+.soc-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.6); font-size: 0.95rem; text-decoration: none;
+  transition: all 0.3s;
+}
+.soc-icon:hover { background: var(--rose-dark); color: #fff; transform: translateY(-3px); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom p { color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+
+/* ===== FLOATING BUTTONS ===== */
+.float-btns {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  display: flex; flex-direction: column; gap: 12px; align-items: flex-end;
+}
+.float-btn {
+  display: flex; align-items: center; gap: 10px;
+  border-radius: 50px; padding: 13px 20px;
+  font-weight: 600; font-size: 0.85rem; text-decoration: none;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.2); transition: all 0.3s;
+  white-space: nowrap;
+}
+.float-btn i { font-size: 1.1rem; }
+.float-wa { background: #25D366; color: #fff; }
+.float-wa:hover { transform: translateX(-4px); box-shadow: 0 12px 36px rgba(37,211,102,0.4); }
+.float-call { background: var(--rose-dark); color: #fff; }
+.float-call:hover { transform: translateX(-4px); box-shadow: 0 12px 36px rgba(232,127,160,0.4); }
+
+/* ===== SCROLL ANIMATION ===== */
+.reveal {
+  opacity: 0; transform: translateY(36px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-left.visible { opacity: 1; transform: none; }
+.reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-right.visible { opacity: 1; transform: none; }
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 1024px) {
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about-images { max-width: 520px; margin: 0 auto; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, 200px); }
+  .gal-item:nth-child(1) { grid-column: 1/3; }
+  .gal-item:nth-child(5) { grid-column: 2/4; }
+}
+@media(max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: block; }
+  .contact-inner { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2,1fr); grid-template-rows: repeat(5,180px); }
+  .gal-item:nth-child(1) { grid-column: 1/3; }
+  .gal-item:nth-child(5) { grid-column: 1/3; }
+  .hero h1 { font-size: 2.2rem; }
+  .review-card { padding: 30px 20px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .hours-card { padding: 30px 22px; }
+  .float-btn span { display: none; }
+  .float-btn { padding: 14px; border-radius: 50%; }
+}
+@media(max-width: 480px) {
+  section { padding: 70px 5%; }
+  .stats-strip { gap: 28px; padding: 30px 5%; }
+  .about-badge { right: 0; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(6, 150px); }
+  .gal-item:nth-child(1) { grid-column: 1/3; grid-row: 1/2; }
+  .gal-item:nth-child(5) { grid-column: 1/3; grid-row: auto; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Dream<span>Cream</span></a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="tel:08982311111" class="nav-cta"><i class="fas fa-phone"></i> Order Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#menu" onclick="toggleMenu()">Menu</a>
+  <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+  <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="tel:08982311111" style="color:var(--rose-dark);font-weight:600;">📞 08982311111</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-slides">
+    <div class="hero-slide s1 active"></div>
+    <div class="hero-slide s2"></div>
+    <div class="hero-slide s3"></div>
+    <div class="hero-slide s4"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">✨ Bhopal's Premium Cake Destination</div>
+    <h1>Delicious Moments<br><em>Dream Cream 🍰</em></h1>
+    <p>Custom Cakes, Desserts & Quick Bites in Bhopal</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary"><i class="fas fa-cake-candles"></i> Order Now</a>
+      <a href="tel:08982311111" class="btn-secondary"><i class="fas fa-phone"></i> Call Now</a>
+    </div>
+  </div>
+  <div class="hero-dots" id="heroDots">
+    <div class="hero-dot active" onclick="goSlide(0)"></div>
+    <div class="hero-dot" onclick="goSlide(1)"></div>
+    <div class="hero-dot" onclick="goSlide(2)"></div>
+    <div class="hero-dot" onclick="goSlide(3)"></div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-strip reveal">
+  <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Years of Sweetness</div></div>
+  <div class="stat"><div class="stat-num">10K+</div><div class="stat-label">Happy Customers</div></div>
+  <div class="stat"><div class="stat-num">200+</div><div class="stat-label">Cake Designs</div></div>
+  <div class="stat"><div class="stat-num">⭐ 4.8</div><div class="stat-label">Google Rating</div></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-images reveal-left">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=600&q=80" alt="Dream Cream cakes" loading="lazy">
+      </div>
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=600&q=80" alt="Desserts" loading="lazy">
+      </div>
+      <div class="about-img">
+        <img src="https://www.deliciaecakes.com/static/d398ff3e9f7d4b104187136a0192a176/33aa5/cover-kids-bday.jpg" alt="Pastries" loading="lazy">
+      </div>
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80" alt="Pastries" loading="lazy">
+      </div>
+
+      <div class="about-badge">
+        <div class="num">🏆</div>
+        <div class="lbl">Best Cake Shop<br>Bhopal</div>
+      </div>
+    </div>
+    <div class="about-text reveal-right">
+      <div class="section-header">
+        <div class="section-tag">Our Story</div>
+        <h2 class="section-title">Welcome to <span>Dream Cream</span></h2>
+        <div class="divider"><i class="fas fa-star"></i></div>
+      </div>
+      <p>Dream Cream is one of the best cake destinations in Bhopal offering customized cakes, desserts, pizzas, sandwiches and more. We specialize in making every celebration special with fresh, beautifully designed cakes and delicious treats.</p>
+      <p>From elegant wedding cakes to playful birthday creations, from warm pizzas to refreshing desserts — every item we craft is made with love and the finest ingredients to make your moments unforgettable.</p>
+      <div class="about-perks">
+        <div class="perk"><i class="fas fa-check-circle"></i> Fresh Daily</div>
+        <div class="perk"><i class="fas fa-check-circle"></i> Custom Orders</div>
+        <div class="perk"><i class="fas fa-check-circle"></i> Same-Day Delivery</div>
+        <div class="perk"><i class="fas fa-check-circle"></i> Premium Ingredients</div>
+      </div>
+      <a href="tel:08982311111" class="btn-primary" style="display:inline-flex;"><i class="fas fa-phone"></i> Order Your Cake</a>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="section-header reveal">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Our Delicious <span>Menu</span></h2>
+    <div class="divider"><i class="fas fa-heart"></i></div>
+    <p class="section-desc">From dreamy custom cakes to quick bites — we have something for every craving and every occasion.</p>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-card reveal" style="transition-delay:0.05s">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=600&q=80" alt="Custom Cakes" loading="lazy">
+        <div class="card-tag">Signature</div>
+      </div>
+      <div class="menu-card-body">
+        <h3>Custom Cakes</h3>
+        <p>Bring your vision to life! We craft personalized cakes for every theme, shape, and flavor you desire.</p>
+        <a href="#contact" class="arrow">Order Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="menu-card reveal" style="transition-delay:0.1s">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1535254973040-607b474cb50d?w=600&q=80" alt="Birthday Cakes" loading="lazy">
+        <div class="card-tag">Popular</div>
+      </div>
+      <div class="menu-card-body">
+        <h3>Birthday Cakes</h3>
+        <p>Make birthdays magical with our colorful, fun, and delicious birthday creations — for all ages!</p>
+        <a href="#contact" class="arrow">Order Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="menu-card reveal" style="transition-delay:0.15s">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1612203985729-70726954388c?w=600&q=80" alt="Designer Cakes" loading="lazy">
+        <div class="card-tag">Luxury</div>
+      </div>
+      <div class="menu-card-body">
+        <h3>Designer Cakes</h3>
+        <p>Artistically sculpted, fondant-draped masterpieces that are almost too beautiful to eat — almost!</p>
+        <a href="#contact" class="arrow">Order Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="menu-card reveal" style="transition-delay:0.2s">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" alt="Desserts" loading="lazy">
+        <div class="card-tag">Indulgent</div>
+      </div>
+      <div class="menu-card-body">
+        <h3>Desserts</h3>
+        <p>Pastries, tarts, mousse, cheesecakes, and more indulgent desserts to satisfy your sweet tooth daily.</p>
+        <a href="#contact" class="arrow">Explore <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="menu-card reveal" style="transition-delay:0.25s">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?w=600&q=80" alt="Quick Bites" loading="lazy">
+        <div class="card-tag">Quick Bites</div>
+      </div>
+      <div class="menu-card-body">
+        <h3>Quick Bites</h3>
+        <p>Savory snacks, fresh sandwiches and bite-sized treats perfect for a quick hunger fix or tea time.</p>
+        <a href="#contact" class="arrow">View Menu <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+    <div class="menu-card reveal" style="transition-delay:0.3s">
+      <div class="menu-card-img">
+        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600&q=80" alt="Pizzas and Sandwiches" loading="lazy">
+        <div class="card-tag">Savory</div>
+      </div>
+      <div class="menu-card-body">
+        <h3>Pizzas & Sandwiches</h3>
+        <p>Crispy, cheesy pizzas and freshly-made sandwiches loaded with flavors — because dessert needs company!</p>
+        <a href="#contact" class="arrow">Order Now <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-header reveal">
+    <div class="section-tag">Our Creations</div>
+    <h2 class="section-title">A Feast for <span style="color:var(--rose)">the Eyes</span></h2>
+    <div class="divider"><i class="fas fa-camera"></i></div>
+    <p class="section-desc" style="color:rgba(253,246,239,0.7)">Every cake tells a story. Browse our gallery of edible art.</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80" alt="Celebration Cake" loading="lazy">
+      <div class="overlay"><div class="overlay-text">Celebration Cakes</div></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=600&q=80" alt="Cupcakes" loading="lazy">
+      <div class="overlay"><div class="overlay-text">Cupcakes</div></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?w=600&q=80" alt="Macarons" loading="lazy">
+      <div class="overlay"><div class="overlay-text">Macarons & Pastries</div></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=600&q=80" alt="Birthday cake" loading="lazy">
+      <div class="overlay"><div class="overlay-text">Birthday Specials</div></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=800&q=80" alt="Wedding cake" loading="lazy">
+      <div class="overlay"><div class="overlay-text">Wedding Cakes</div></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=600&q=80" alt="Chocolate cake" loading="lazy">
+      <div class="overlay"><div class="overlay-text">Chocolate Decadence</div></div>
+    </div>
+    <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" alt="Tarts" loading="lazy">
+      <div class="overlay"><div class="overlay-text">Fruit Tarts</div></div>
+    </div>
+     <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" alt="Tarts" width="400" height="500" loading="lazy">
+      <div class="overlay"><div class="overlay-text">Fruit Tarts</div></div>
+    </div>
+     <div class="gal-item">
+      <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80" alt="Tarts" loading="lazy">
+      <div class="overlay"><div class="overlay-text">Fruit Tarts</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-header reveal">
+    <div class="section-tag">Love Notes</div>
+    <h2 class="section-title">What Our <span>Customers Say</span></h2>
+    <div class="divider"><i class="fas fa-heart"></i></div>
+  </div>
+  <div class="reviews-carousel reveal">
+    <div class="review-slides">
+      <div class="review-track" id="reviewTrack">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Taste is awesome. Same as ordered and delivery was on time. Thank you for best support!"</p>
+          <div class="reviewer">
+            <img src="https://i.pravatar.cc/100?img=1" alt="Reviewer" class="reviewer-avatar">
+            <div class="reviewer-info"><h4>Priya Sharma</h4><span>Birthday Cake Order</span></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Different types of cakes with customization. Taste was amazing for birthday celebrations. Highly recommend!"</p>
+          <div class="reviewer">
+            <img src="https://i.pravatar.cc/100?img=5" alt="Reviewer" class="reviewer-avatar">
+            <div class="reviewer-info"><h4>Rohan Verma</h4><span>Custom Cake Order</span></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"One of the best places serving great pizzas and sandwiches. We love Dream Cream. Will visit again and again!"</p>
+          <div class="reviewer">
+            <img src="https://i.pravatar.cc/100?img=9" alt="Reviewer" class="reviewer-avatar">
+            <div class="reviewer-info"><h4>Sunita Patel</h4><span>Regular Customer</span></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Best place to find cakes in Bhopal. Thanks for making my baby's birthday so special. Absolutely loved every bit!"</p>
+          <div class="reviewer">
+            <img src="https://i.pravatar.cc/100?img=12" alt="Reviewer" class="reviewer-avatar">
+            <div class="reviewer-info"><h4>Meena Rajput</h4><span>Baby's 1st Birthday</span></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★☆</div>
+          <p class="review-text">"Delicious cakes and great ambience. The chocolate truffle was outstanding. Wait time was a bit long but totally worth it!"</p>
+          <div class="reviewer">
+            <img src="https://i.pravatar.cc/100?img=17" alt="Reviewer" class="reviewer-avatar">
+            <div class="reviewer-info"><h4>Aakash Gupta</h4><span>Walk-in Customer</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-nav">
+      <button class="carousel-btn" onclick="prevReview()"><i class="fas fa-chevron-left"></i></button>
+      <div class="carousel-dots" id="reviewDots">
+        <div class="c-dot active"></div>
+        <div class="c-dot"></div>
+        <div class="c-dot"></div>
+        <div class="c-dot"></div>
+        <div class="c-dot"></div>
+      </div>
+      <button class="carousel-btn" onclick="nextReview()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<!-- ATMOSPHERE -->
+<section class="atm" id="atmosphere">
+  <div class="section-header reveal">
+    <div class="section-tag">The Vibe</div>
+    <h2 class="section-title">Our <span>Atmosphere</span></h2>
+    <div class="divider"><i class="fas fa-smile"></i></div>
+    <p class="section-desc">A warm, welcoming space for everyone — families, friends, and sweet lovers alike.</p>
+  </div>
+  <div class="atm-grid reveal">
+    <div class="atm-badge"><i class="fas fa-couch"></i><span>Casual Atmosphere</span></div>
+    <div class="atm-badge"><i class="fas fa-users"></i><span>Family Friendly</span></div>
+    <div class="atm-badge"><i class="fas fa-people-group"></i><span>Groups Welcome</span></div>
+    <div class="atm-badge"><i class="fas fa-rainbow"></i><span>LGBTQ+ Friendly</span></div>
+    <div class="atm-badge"><i class="fas fa-child"></i><span>Good for Kids</span></div>
+    <div class="atm-badge"><i class="fas fa-dog"></i><span>Dogs Allowed Outside</span></div>
+    <div class="atm-badge"><i class="fas fa-graduation-cap"></i><span>Popular Among Students</span></div>
+    <div class="atm-badge"><i class="fas fa-star"></i><span>Premium Experience</span></div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours" id="hours">
+  <div class="section-header reveal">
+    <div class="section-tag">Find Us</div>
+    <h2 class="section-title" style="color:var(--cream)">Opening <span style="color:var(--rose)">Hours</span></h2>
+    <div class="divider" style="--rose:var(--rose)"><i class="fas fa-clock" style="color:var(--rose)"></i></div>
+  </div>
+  <div class="hours-card reveal">
+    <div class="hours-row">
+      <span class="hours-days"><i class="fas fa-calendar-week" style="margin-right:10px;color:var(--rose)"></i>Wednesday – Tuesday</span>
+      <span class="hours-time">11:30 AM – 11:00 PM</span>
+    </div>
+    <div class="hours-row">
+      <span class="hours-days"><i class="fas fa-info-circle" style="margin-right:10px;color:var(--rose)"></i>Public Holidays</span>
+      <span class="hours-time">11:30 AM – 11:00 PM</span>
+    </div>
+    <div style="text-align:center;margin-top:22px">
+      <div class="open-badge">
+        <div class="open-dot"></div>
+        We're Open Today
+      </div>
+    </div>
+    <p class="hours-footer">Last order 30 minutes before closing. Call ahead for large custom orders.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-header reveal">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Visit or <span>Order Online</span></h2>
+    <div class="divider"><i class="fas fa-map-marker-alt"></i></div>
+  </div>
+  <div class="contact-inner">
+    <div class="reveal-left">
+      <h3>Find Us in Bhopal</h3>
+      <div class="contact-detail">
+        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="contact-detail-text">
+          <p><strong>Dream Cream</strong><br>Shop No. A1, Ranthambore Complex, Zone-II,<br>Maharana Pratap Nagar, Bhopal,<br>Madhya Pradesh – 462011</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+        <div class="contact-detail-text">
+          <a href="tel:08982311111">08982311111</a>
+          <p>Call to order or for enquiries</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon"><i class="fas fa-clock"></i></div>
+        <div class="contact-detail-text">
+          <p><strong>Open Daily</strong> 11:30 AM – 11:00 PM</p>
+        </div>
+      </div>
+      <a href="https://wa.me/918982311111?text=Hi%20Dream%20Cream!%20I'd%20like%20to%20place%20an%20order." target="_blank" class="wa-btn">
+        <i class="fab fa-whatsapp" style="font-size:1.2rem"></i> Chat on WhatsApp
+      </a>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3666.6!2d77.452!3d23.257!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c43a9f9262f51%3A0x474b0bca99a35d4a!2sMaharana%20Pratap%20Nagar%2C%20Bhopal%2C%20Madhya%20Pradesh!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          width="100%" height="220" style="border:0;display:block;" allowfullscreen="" loading="lazy">
+        </iframe>
+      </div>
+    </div>
+    <div class="contact-form reveal-right">
+      <h3>Place an Enquiry 🍰</h3>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="Enter your name">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="Enter your phone number">
+      </div>
+      <div class="form-group">
+        <label>Message / Order Details</label>
+        <textarea placeholder="Tell us about your cake or order..."></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit()">Send Enquiry 🎂</button>
+      <div id="formMsg" style="display:none;margin-top:14px;text-align:center;color:var(--choco);font-size:0.9rem;">
+        ✅ Thanks! We'll get back to you shortly.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="logo">Dream Cream</span>
+      <p>Bhopal's sweetest destination for custom cakes, desserts, and more. Every bite crafted with love and the finest ingredients.</p>
+      <div class="social-icons" style="margin-top:20px">
+        <a href="#" class="soc-icon"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="soc-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/918982311111" class="soc-icon"><i class="fab fa-whatsapp"></i></a>
+        <a href="tel:08982311111" class="soc-icon"><i class="fas fa-phone"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#about">About Us</a>
+      <a href="#menu">Our Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>We Serve</h4>
+      <a href="#menu">Custom Cakes</a>
+      <a href="#menu">Birthday Cakes</a>
+      <a href="#menu">Designer Cakes</a>
+      <a href="#menu">Desserts</a>
+      <a href="#menu">Pizzas & Sandwiches</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Us</h4>
+      <p>Shop No. A1, Ranthambore Complex, Zone-II, Maharana Pratap Nagar, Bhopal – 462011</p>
+      <a href="tel:08982311111" style="margin-top:10px;display:inline-block;color:var(--rose)">📞 08982311111</a>
+      <p style="margin-top:6px">Open: 11:30 AM – 11:00 PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dream Cream, Bhopal. All rights reserved.</p>
+    <p>Made with ❤️ in Bhopal, Madhya Pradesh</p>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-btns">
+  <a href="https://wa.me/918982311111?text=Hi%20Dream%20Cream!%20I'd%20like%20to%20place%20an%20order." target="_blank" class="float-btn float-wa">
+    <i class="fab fa-whatsapp"></i> <span>WhatsApp</span>
+  </a>
+  <a href="tel:08982311111" class="float-btn float-call">
+    <i class="fas fa-phone"></i> <span>Call Now</span>
+  </a>
+</div>
+
+<script>
+// ===== HERO SLIDER =====
+let currentSlide = 0;
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.hero-dot');
+
+function goSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+setInterval(() => goSlide((currentSlide + 1) % slides.length), 5000);
+
+// ===== REVIEW CAROUSEL =====
+let currentReview = 0;
+const reviewTrack = document.getElementById('reviewTrack');
+const reviewDots = document.querySelectorAll('.c-dot');
+const totalReviews = 5;
+
+function updateReview() {
+  reviewTrack.style.transform = `translateX(-${currentReview * 100}%)`;
+  reviewDots.forEach((d, i) => d.classList.toggle('active', i === currentReview));
+}
+function nextReview() { currentReview = (currentReview + 1) % totalReviews; updateReview(); }
+function prevReview() { currentReview = (currentReview - 1 + totalReviews) % totalReviews; updateReview(); }
+reviewDots.forEach((d, i) => d.addEventListener('click', () => { currentReview = i; updateReview(); }));
+setInterval(nextReview, 6000);
+
+// ===== NAV SCROLL =====
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// ===== MOBILE MENU =====
+function toggleMenu() {
+  const m = document.getElementById('mobileMenu');
+  m.style.display = m.style.display === 'block' ? 'none' : 'block';
+}
+
+// ===== SCROLL REVEAL =====
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+// ===== FORM SUBMIT =====
+function handleSubmit() {
+  const inputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
+  let valid = true;
+  inputs.forEach(i => { if (!i.value.trim()) valid = false; });
+  if (!valid) { alert('Please fill in all fields.'); return; }
+  document.getElementById('formMsg').style.display = 'block';
+  inputs.forEach(i => i.value = '');
+  setTimeout(() => document.getElementById('formMsg').style.display = 'none', 4000);
+}
+</script>
+</body>
+</html>
