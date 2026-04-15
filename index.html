@@ -1133,13 +1133,46 @@ revealEls.forEach(el => observer.observe(el));
 
 // ===== FORM SUBMIT =====
 function handleSubmit() {
-  const inputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
-  let valid = true;
-  inputs.forEach(i => { if (!i.value.trim()) valid = false; });
-  if (!valid) { alert('Please fill in all fields.'); return; }
+  const name = document.querySelector('input[type="text"]').value.trim();
+  const phone = document.querySelector('input[type="tel"]').value.trim();
+  const message = document.querySelector('textarea').value.trim();
+
+  // Validation
+  if (!name || !phone || !message) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  // WhatsApp message format
+  const whatsappMessage = `Hello Dream Cream 🍰
+
+New Enquiry / Order Details:
+
+👤 Name: ${name}
+📞 Phone: ${phone}
+📝 Message: ${message}
+
+Please contact me soon.`;
+
+  // Encode message for URL
+  const encodedMessage = encodeURIComponent(whatsappMessage);
+
+  // WhatsApp redirect link (91 = India code)
+  const whatsappURL = `https://wa.me/918982311111?text=${encodedMessage}`;
+
+  // Redirect to WhatsApp
+  window.open(whatsappURL, '_blank');
+
+  // Optional success message
   document.getElementById('formMsg').style.display = 'block';
-  inputs.forEach(i => i.value = '');
-  setTimeout(() => document.getElementById('formMsg').style.display = 'none', 4000);
+
+  // Clear fields
+  document.querySelectorAll('.contact-form input, .contact-form textarea')
+    .forEach(i => i.value = '');
+
+  setTimeout(() => {
+    document.getElementById('formMsg').style.display = 'none';
+  }, 4000);
 }
 </script>
 </body>
